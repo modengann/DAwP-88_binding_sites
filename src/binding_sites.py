@@ -25,30 +25,10 @@ def find_permutation(n_clusters, real_labels, labels):
     return permutation
 
 def toint(x):
-    if (x == 'A'):
-        return 0
-    elif (x == 'C'):
-        return 1
-    elif (x == 'G'):
-        return 2
-    elif (x == 'T'):
-        return 3
-    else:
-        return 10
+    pass
 
 def get_features_and_labels(filename):
-    df = pd.read_csv(filename, sep='\t')
-    X = df["X"]
-    y = df["y"]
-    y = y.to_numpy()
-    # X = X.to_numpy() (is there a way to vectorize this operation?)
-    mat = []
-    for seq in X:
-        seq_arr = []
-        for char in seq:
-            seq_arr.append(toint(char))
-        mat.append(seq_arr)    
-    return (np.array(mat), y)
+    pass
 
 def plot(distances, method='average', affinity='euclidean'):
     mylinkage = hc.linkage(sp.distance.squareform(distances), method=method)
@@ -57,23 +37,10 @@ def plot(distances, method='average', affinity='euclidean'):
     plt.show()
 
 def cluster_euclidean(filename):
-    X, y = get_features_and_labels(filename)
-    model = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='average')
-    model.fit(X)
-    permutation = find_permutation(2, y, model.labels_)
-    new_labels = [ permutation[label] for label in model.labels_]
-    score = accuracy_score(y, new_labels)
-    return score
+    pass
 
 def cluster_hamming(filename):
-    X, y = get_features_and_labels(filename)
-    distance = pairwise_distances(X, metric='hamming')
-    model = AgglomerativeClustering(n_clusters=2, affinity='precomputed', linkage='average')
-    model.fit_predict(distance)
-    permutation = find_permutation(2, y, model.labels_)
-    new_labels = [ permutation[label] for label in model.labels_]
-    score = accuracy_score(y, new_labels)
-    return score
+    pass
 
 
 def main():
